@@ -233,7 +233,15 @@ namespace LitJson
                 p_data.IsField = true;
                 p_data.Type = f_info.FieldType;
 
-                data.Properties.Add (f_info.Name, p_data);
+                JsonPropertyName jp = (JsonPropertyName) f_info.GetCustomAttribute(typeof(JsonPropertyName));
+                if (jp != null)
+                {
+                    data.Properties.Add(jp.Name, p_data);
+                }
+                else
+                {
+                    data.Properties.Add(f_info.Name, p_data);
+                }
             }
 
             lock (object_metadata_lock) {
