@@ -1,0 +1,15 @@
+using System;
+
+namespace LitJson
+{
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
+    public class JsonPropertyName : Attribute
+    {
+        public JsonPropertyName(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; }
+    }
+}
